@@ -80,5 +80,21 @@ public class DBConnection {
         return incrementID;
     }
 
+    public int updatePlayerHealth(int health, int id) {
+
+        String sql = "UPDATE player set health = ? where PlayerID = ?";
+        int affectedRows = 0;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, health);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return affectedRows;
+    }
+
 
 }

@@ -4,7 +4,7 @@ public class Main {
         DBConnection db = new DBConnection();
         db.open();
         CreatePlayerMonster cr =  new CreatePlayerMonster();
-        cr.createPlayer();
+        db.updatePlayerHealth(10, 1);
 
     }
 }
