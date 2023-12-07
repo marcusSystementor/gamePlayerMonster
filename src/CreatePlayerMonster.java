@@ -21,6 +21,7 @@ public class CreatePlayerMonster {
         newPlayer.setHealth(playerHealth);
 
         System.out.println("Player created with id: " + dbConnection.createPlayer(newPlayer));
+        dbConnection.closeConnection();
 
     }
 

@@ -4,7 +4,10 @@ public class Main {
         DBConnection db = new DBConnection();
         db.open();
         CreatePlayerMonster cr =  new CreatePlayerMonster();
-        db.updatePlayerHealth(10, 1);
+       // cr.createPlayer();
+
+        String playerName = db.getPlayerWithId(3);
+        System.out.println(playerName);
 
     }
 }

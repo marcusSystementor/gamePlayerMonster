@@ -23,6 +23,18 @@ public class DBConnection {
         }
     }
 
+    public void closeConnection() {
+
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public String createTablePlayer() {
         String sql = "CREATE TABLE player (playerID INT NOT NULL AUTO_INCREMENT, name VARCHAR(60), health INT, primary KEY(playerID))";
 
@@ -95,6 +107,27 @@ public class DBConnection {
         }
         return affectedRows;
     }
+
+    public String getPlayerWithId(int id) {
+
+        String sql = "SELECT * from player where PlayerID = ?";
+        String playerName;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                playerName = rs.getString("name");
+                return playerName;
+            }
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+
+        }
+        return null;
+    }
+
 
 
 }
